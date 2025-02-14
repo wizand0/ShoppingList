@@ -1,8 +1,8 @@
 package ru.wizand.shoppinglist.domain
 
-class GetShopItemUseCase {
+class GetShopItemUseCase(private val shopListRepository: ShopListRepository) {
 
-    fun getShopList(shopItemId: Int): ShopItem {
-        TODO()
+    fun getShopItem(shopItemId: Int): ShopItem {
+        return shopListRepository.getShopItem(shopItemId)
     }
 }
