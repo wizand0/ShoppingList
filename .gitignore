@@ -8,3 +8,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/hs_err_pid4160.log
+/hs_err_pid25232.log

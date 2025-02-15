@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id 'kotlin-kapt'
 }
 
 android {
@@ -42,4 +43,14 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+
+    // Room
+    def room_version = "2.6.1" // Проверьте актуальную версию на сайте Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Если вы планируете использовать Kotlin Coroutines
+    implementation "androidx.room:room-ktx:$room_version"
 }
