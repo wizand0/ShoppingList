@@ -48,11 +48,11 @@ class MainActivity : AppCompatActivity() {
 //        viewModel.getShopList()
 
         // Запускаем корутину в lifecycleScope, чтобы вызывать suspend-функцию
-        lifecycleScope.launch {
-            val list = viewModel.getShopList()
+//        lifecycleScope.launch {
+//            val list = viewModel.getShopList()
             // Здесь можно обновить UI или что-то ещё, используя полученные данные
-            viewModel.shopList.value = list
-        }
+//            viewModel.shopList.value = list
+//        }
 
 
 

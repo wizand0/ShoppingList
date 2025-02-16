@@ -1,5 +1,7 @@
 package ru.wizand.shoppinglist.domain
 
+import androidx.lifecycle.LiveData
+
 interface ShopListRepository {
 
     suspend fun addShopItem(shopItem: ShopItem)
@@ -10,5 +12,5 @@ interface ShopListRepository {
 
     suspend fun getShopItem(shopItemId: Int): ShopItem?
 
-    suspend fun getShopList(): List<ShopItem>
+    fun getShopList(): LiveData<List<ShopItem>>
 }
