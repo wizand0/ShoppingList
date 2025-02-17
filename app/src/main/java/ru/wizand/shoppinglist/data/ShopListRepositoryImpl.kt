@@ -29,7 +29,7 @@ object ShopListRepositoryImpl : ShopListRepository {
         updateList()
     }
 
-    override suspend fun editShopItem(shopItem: ShopItem) {
+    override fun editShopItem(shopItem: ShopItem) {
         dao.update(shopItem.toEntity())
     }
 

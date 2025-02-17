@@ -29,7 +29,7 @@ class MainViewModel : ViewModel() {
 
     }
 
-    suspend fun changeEnableState(shopItem: ShopItem) {
+    fun changeEnableState(shopItem: ShopItem) {
         val newItem = shopItem.copy(enabled = !shopItem.enabled)
         repository.editShopItem(newItem)
     }

@@ -12,7 +12,7 @@ interface ShopItemDao {
     suspend fun delete(shopItem: ShopItemEntity)
 
     @Update
-    suspend fun update(shopItem: ShopItemEntity)
+    fun update(shopItem: ShopItemEntity)
 
     @Query("SELECT * FROM shop_items WHERE id = :shopItemId")
     suspend fun getShopItem(shopItemId: Int): ShopItemEntity?
