@@ -24,7 +24,7 @@ class MainViewModel : ViewModel() {
 //        return repository.getShopList()
 //    }
 
-    suspend fun deleteShopItem(shopItem: ShopItem) {
+    fun deleteShopItem(shopItem: ShopItem) {
         repository.deleteShopItem(shopItem)
 
     }

@@ -6,17 +6,17 @@ import androidx.room.*
 interface ShopItemDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(shopItem: ShopItemEntity)
+    fun insert(shopItem: ShopItemEntity)
 
     @Delete
-    suspend fun delete(shopItem: ShopItemEntity)
+    fun delete(shopItem: ShopItemEntity)
 
     @Update
     fun update(shopItem: ShopItemEntity)
 
     @Query("SELECT * FROM shop_items WHERE id = :shopItemId")
-    suspend fun getShopItem(shopItemId: Int): ShopItemEntity?
+    fun getShopItem(shopItemId: Int): ShopItemEntity?
 
     @Query("SELECT * FROM shop_items")
-    suspend fun getShopList(): List<ShopItemEntity>
+    fun getShopList(): List<ShopItemEntity>
 }

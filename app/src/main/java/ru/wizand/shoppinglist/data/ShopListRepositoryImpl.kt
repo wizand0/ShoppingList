@@ -19,12 +19,12 @@ object ShopListRepositoryImpl : ShopListRepository {
         this.dao = dao
     }
 
-    override suspend fun addShopItem(shopItem: ShopItem) {
+    override fun addShopItem(shopItem: ShopItem) {
         dao.insert(shopItem.toEntity())
         updateList()
     }
 
-    override suspend fun deleteShopItem(shopItem: ShopItem) {
+    override fun deleteShopItem(shopItem: ShopItem) {
         dao.delete(shopItem.toEntity())
         updateList()
     }
@@ -33,7 +33,7 @@ object ShopListRepositoryImpl : ShopListRepository {
         dao.update(shopItem.toEntity())
     }
 
-    override suspend fun getShopItem(shopItemId: Int): ShopItem? {
+    override fun getShopItem(shopItemId: Int): ShopItem? {
         return dao.getShopItem(shopItemId)?.toDomainModel()
     }
 
@@ -48,7 +48,7 @@ object ShopListRepositoryImpl : ShopListRepository {
         return shopListLD
     }
 
-    private suspend fun updateList() {
+    private fun updateList() {
         shopListLD.value = dao.getShopList().map { it.toDomainModel() }
     }
 }
