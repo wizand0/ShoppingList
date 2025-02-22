@@ -19,7 +19,7 @@ object ShopListRepositoryImpl : ShopListRepository {
         this.dao = dao
     }
 
-    override fun addShopItem(shopItem: ShopItem) {
+    override suspend fun addShopItem(shopItem: ShopItem) {
         dao.insert(shopItem.toEntity())
         updateList()
     }

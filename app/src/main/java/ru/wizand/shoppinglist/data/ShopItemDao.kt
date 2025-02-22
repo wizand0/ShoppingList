@@ -6,7 +6,7 @@ import androidx.room.*
 interface ShopItemDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(shopItem: ShopItemEntity)
+    suspend fun insert(shopItem: ShopItemEntity)
 
     @Delete
     fun delete(shopItem: ShopItemEntity)
