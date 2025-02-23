@@ -1,5 +1,6 @@
 package ru.wizand.shoppinglist.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -9,14 +10,14 @@ interface ShopItemDao {
     suspend fun insert(shopItem: ShopItemEntity)
 
     @Delete
-    fun delete(shopItem: ShopItemEntity)
+    suspend fun delete(shopItem: ShopItemEntity)
 
     @Update
-    fun update(shopItem: ShopItemEntity)
+    suspend fun update(shopItem: ShopItemEntity)
 
     @Query("SELECT * FROM shop_items WHERE id = :shopItemId")
-    fun getShopItem(shopItemId: Int): ShopItemEntity?
+    suspend fun getShopItem(shopItemId: Int): ShopItemEntity?
 
     @Query("SELECT * FROM shop_items")
-    fun getShopList(): List<ShopItemEntity>
+    fun getShopList(): LiveData<List<ShopItemEntity>>
 }

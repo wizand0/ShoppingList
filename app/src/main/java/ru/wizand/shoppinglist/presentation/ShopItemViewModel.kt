@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 class ShopItemViewModel : ViewModel() {
 
     private val repository = ShopListRepositoryImpl
+    val shopList = repository.getShopList()
 
     private val getShopItemUseCase = GetShopItemUseCase(repository)
     private val addShopItemUseCase = AddShopItemUseCase(repository)
@@ -37,7 +38,7 @@ class ShopItemViewModel : ViewModel() {
         get() = _shouldCloseScreen
 
 
-    fun getShopItem(shopItemId: Int) {
+    suspend fun getShopItem(shopItemId: Int) {
         val item = getShopItemUseCase.getShopItem(shopItemId)
         _shopItem.value = item
     }
@@ -106,11 +107,11 @@ class ShopItemViewModel : ViewModel() {
         return result
     }
 
-    private fun resetErrorInputName() {
+    fun resetErrorInputName() {
         _errorInputName.value = false
     }
 
-    private fun resetErrorInputCount() {
+    fun resetErrorInputCount() {
         _errorInputCount.value = false
     }
 

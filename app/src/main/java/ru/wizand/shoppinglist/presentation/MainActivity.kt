@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.launch
 import ru.wizand.shoppinglist.R
 import ru.wizand.shoppinglist.data.ShopDatabase
 import ru.wizand.shoppinglist.data.ShopListRepositoryImpl
@@ -114,8 +116,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val item = shopListAdapter.currentList[viewHolder.adapterPosition]
-                viewModel.deleteShopItem(item)
+
+                    val item = shopListAdapter.currentList[viewHolder.adapterPosition]
+                lifecycleScope.launch {
+                    viewModel.deleteShopItem(item)
+                }
             }
         }
         val itemTouchHelper = ItemTouchHelper(callback)
@@ -132,7 +137,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupLongClickListenter() {
         shopListAdapter.onShopItemLongClickListener = {
-            viewModel.changeEnableState(it)
+            lifecycleScope.launch {
+                viewModel.changeEnableState(it)
+            }
         }
     }
 }

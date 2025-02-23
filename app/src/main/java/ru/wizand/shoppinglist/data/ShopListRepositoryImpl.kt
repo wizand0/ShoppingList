@@ -21,20 +21,20 @@ object ShopListRepositoryImpl : ShopListRepository {
 
     override suspend fun addShopItem(shopItem: ShopItem) {
         dao.insert(shopItem.toEntity())
-        updateList()
     }
 
-    override fun deleteShopItem(shopItem: ShopItem) {
+    override suspend fun deleteShopItem(shopItem: ShopItem) {
         dao.delete(shopItem.toEntity())
-        updateList()
+//        updateList()
     }
 
-    override fun editShopItem(shopItem: ShopItem) {
+    override suspend fun editShopItem(shopItem: ShopItem) {
         dao.update(shopItem.toEntity())
     }
 
-    override fun getShopItem(shopItemId: Int): ShopItem? {
+    override suspend fun getShopItem(shopItemId: Int): ShopItem {
         return dao.getShopItem(shopItemId)?.toDomainModel()
+            ?: throw IllegalArgumentException("ShopItem with id $shopItemId not found")
     }
 
 //    override suspend fun getShopItem(shopItemId: Int): ShopItem {
@@ -48,7 +48,7 @@ object ShopListRepositoryImpl : ShopListRepository {
         return shopListLD
     }
 
-    private fun updateList() {
-        shopListLD.value = dao.getShopList().map { it.toDomainModel() }
-    }
+//    private fun updateList() {
+//        shopListLD.value = dao.getShopList().map { it.toDomainModel() }
+//    }
 }

@@ -24,12 +24,12 @@ class MainViewModel : ViewModel() {
 //        return repository.getShopList()
 //    }
 
-    fun deleteShopItem(shopItem: ShopItem) {
+    suspend fun deleteShopItem(shopItem: ShopItem) {
         repository.deleteShopItem(shopItem)
 
     }
 
-    fun changeEnableState(shopItem: ShopItem) {
+    suspend fun changeEnableState(shopItem: ShopItem) {
         val newItem = shopItem.copy(enabled = !shopItem.enabled)
         repository.editShopItem(newItem)
     }

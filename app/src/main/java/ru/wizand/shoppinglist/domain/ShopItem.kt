@@ -6,4 +6,8 @@ data class ShopItem(
     val count: Int,
     val enabled:Boolean
 
-)
+) {
+    companion object {
+        val UNDEFINED_ID: Int = -1
+    }
+}
