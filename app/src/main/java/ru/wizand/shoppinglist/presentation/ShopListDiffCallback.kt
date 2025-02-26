@@ -1,12 +1,13 @@
 package ru.wizand.shoppinglist.presentation
 
 import androidx.recyclerview.widget.DiffUtil
-import ru.wizand.shoppinglist.domain.ShopItem
+import  ru.wizand.shoppinglist.domain.ShopItem
 
 class ShopListDiffCallback(
     private val oldList: List<ShopItem>,
-    private val newList: List<ShopItem>
+    private val newList: List<ShopItem>,
 ): DiffUtil.Callback() {
+
     override fun getOldListSize(): Int {
         return oldList.size
     }
@@ -25,9 +26,5 @@ class ShopListDiffCallback(
         val oldItem = oldList[oldItemPosition]
         val newItem = newList[newItemPosition]
         return oldItem == newItem
-    }
-
-    override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
-        return super.getChangePayload(oldItemPosition, newItemPosition)
     }
 }
