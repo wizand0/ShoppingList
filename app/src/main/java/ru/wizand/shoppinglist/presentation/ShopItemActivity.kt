@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import ru.wizand.shoppinglist.R
 import ru.wizand.shoppinglist.domain.ShopItem
 
-class ShopItemActivity : AppCompatActivity() {
+class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
 
 
     private var screenMode = MODE_UNKNOWN
@@ -20,7 +20,10 @@ class ShopItemActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             launchRightMode()
         }
+    }
 
+    override fun onEditingFinished() {
+        finish()
     }
 
     private fun launchRightMode() {
@@ -73,4 +76,6 @@ class ShopItemActivity : AppCompatActivity() {
             return intent
         }
     }
+
+
 }
