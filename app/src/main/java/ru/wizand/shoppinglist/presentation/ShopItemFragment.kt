@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,8 @@ class ShopItemFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        Log.d("tag", "onAttach")
+
         if (context is OnEditingFinishedListener) {
             onEditingFinishedListener = context
         } else {
@@ -41,6 +44,7 @@ class ShopItemFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("tag", "onCreate")
         parseParams()
     }
 
@@ -49,11 +53,13 @@ class ShopItemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d("tag", "onCreateView")
         return inflater.inflate(R.layout.fragment_shop_item, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("tag", "onViewCreated")
         viewModel = ViewModelProvider(this)[ShopItemViewModel::class.java]
         initViews(view)
         addTextChangeListeners()
@@ -61,6 +67,40 @@ class ShopItemFragment : Fragment() {
         observeViewModel()
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.d("tag", "onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("tag", "onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("tag", "onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("tag", "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("tag", "onDestroy")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("tag", "onDestroyView")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("tag", "onDetach")
+    }
 
     private fun observeViewModel() {
         viewModel.errorInputCount.observe(viewLifecycleOwner) {
